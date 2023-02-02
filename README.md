@@ -1,6 +1,6 @@
 # WunderGraph - TypeScript functions demo
 - Uses WunderGraph's TypeScript Functions to show off a JOIN of 2 GraphQL queries that *can't* be done using just GraphQL.
-- Search using IS0 3166 Alpha-2 Country codes. (e.g. England = "GB", Australia = "AU", Bulgaria = "BG")
+- Search using ISO 3166 Alpha-2 Country codes. (e.g. England = "GB", Australia = "AU", Bulgaria = "BG")
 - APIs JOINed :
   - **GraphQL Countries V2** to get capital by country code.
   - **GraphBrainz Musicbrainz wrapper** to search artists by capital (Lucene search syntax for `area`) 
