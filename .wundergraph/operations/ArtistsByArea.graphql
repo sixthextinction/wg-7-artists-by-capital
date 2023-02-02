@@ -1,0 +1,17 @@
+query ($query: String!) {
+  graphbrainz_search {
+    artists(query: $query, first: 10) {
+      edges {
+        node {
+          name
+          discogs {
+            images {
+              url
+            }
+            profile
+          }
+        }
+      }
+    }
+  }
+}

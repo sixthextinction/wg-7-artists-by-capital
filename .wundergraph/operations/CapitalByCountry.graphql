@@ -1,0 +1,5 @@
+query CapitalByCountry($countryCode: ID!) {
+  countries_country(code: $countryCode){
+    capital
+  }
+}
