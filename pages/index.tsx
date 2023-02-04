@@ -3,9 +3,10 @@ import { NextPage } from "next";
 import React, { useState } from "react";
 import ArtistCard from "../components/ArtistCard";
 import CountryInputForm from "../components/CountryInputForm";
-import { useQuery, withWunderGraph } from "../components/generated/nextjs";
+// import { useQuery, withWunderGraph } from "../components/generated/nextjs";
+import { useQuery, withWunderGraph } from "../lib/wundergraph";
 
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 import Navbar from "../components/Navbar";
 
 const Home: NextPage = () => {
@@ -17,7 +18,7 @@ const Home: NextPage = () => {
     input: {
       country: query,
     },
-    enabled: true,
+    enabled: !!session, // only run the query once we are logged in
   });
 
   // event handlers

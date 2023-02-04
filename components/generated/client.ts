@@ -41,47 +41,38 @@ import type {
 export type UserRole = "admin" | "user";
 
 export const WUNDERGRAPH_S3_ENABLED = false;
-export const WUNDERGRAPH_AUTH_ENABLED = true;
-
-export enum AuthProviderId {
-	"github" = "github",
-}
-
-export interface AuthProvider {
-	id: AuthProviderId;
-	login: (redirectURI?: string) => void;
-}
+export const WUNDERGRAPH_AUTH_ENABLED = false;
 
 export const defaultClientConfig: ClientConfig = {
-	applicationHash: "86f1caab",
+	applicationHash: "a0068bfc",
 	baseURL: "http://localhost:9991",
 	sdkVersion: "0.133.1",
 };
 
 export const operationMetadata: OperationMetadata = {
 	ArtistsByArea: {
-		requiresAuthentication: false,
+		requiresAuthentication: true,
 	},
 	CapitalByCountry: {
-		requiresAuthentication: false,
+		requiresAuthentication: true,
 	},
 	Dragons: {
-		requiresAuthentication: false,
+		requiresAuthentication: true,
 	},
 	"artists/get": {
-		requiresAuthentication: false,
+		requiresAuthentication: true,
 	},
 	"artists/test": {
-		requiresAuthentication: false,
+		requiresAuthentication: true,
 	},
 	"users/get": {
-		requiresAuthentication: false,
+		requiresAuthentication: true,
 	},
 	"users/subscribe": {
-		requiresAuthentication: false,
+		requiresAuthentication: true,
 	},
 	"users/update": {
-		requiresAuthentication: false,
+		requiresAuthentication: true,
 	},
 };
 
@@ -125,7 +116,7 @@ export const createClient = (config?: CreateClientConfig) => {
 		...defaultClientConfig,
 		...config,
 		operationMetadata,
-		csrfEnabled: true,
+		csrfEnabled: false,
 	});
 };
 
@@ -133,37 +124,37 @@ export type Queries = {
 	ArtistsByArea: {
 		input: ArtistsByAreaInput;
 		data: ArtistsByAreaResponseData;
-		requiresAuthentication: false;
+		requiresAuthentication: true;
 		liveQuery: boolean;
 	};
 	CapitalByCountry: {
 		input: CapitalByCountryInput;
 		data: CapitalByCountryResponseData;
-		requiresAuthentication: false;
+		requiresAuthentication: true;
 		liveQuery: boolean;
 	};
 	Dragons: {
 		input?: undefined;
 		data: DragonsResponseData;
-		requiresAuthentication: false;
+		requiresAuthentication: true;
 		liveQuery: boolean;
 	};
 	"artists/get": {
 		input: ArtistsGetInput;
 		data: ArtistsGetResponseData;
-		requiresAuthentication: false;
+		requiresAuthentication: true;
 		liveQuery: boolean;
 	};
 	"artists/test": {
 		input: ArtistsTestInput;
 		data: ArtistsTestResponseData;
-		requiresAuthentication: false;
+		requiresAuthentication: true;
 		liveQuery: boolean;
 	};
 	"users/get": {
 		input: UsersGetInput;
 		data: UsersGetResponseData;
-		requiresAuthentication: false;
+		requiresAuthentication: true;
 		liveQuery: boolean;
 	};
 };
@@ -172,7 +163,7 @@ export type Mutations = {
 	"users/update": {
 		input: UsersUpdateInput;
 		data: UsersUpdateResponseData;
-		requiresAuthentication: false;
+		requiresAuthentication: true;
 	};
 };
 
@@ -180,7 +171,7 @@ export type Subscriptions = {
 	"users/subscribe": {
 		input: UsersSubscribeInput;
 		data: UsersSubscribeResponseData;
-		requiresAuthentication: false;
+		requiresAuthentication: true;
 	};
 };
 
@@ -189,39 +180,38 @@ export type LiveQueries = {
 		input: ArtistsByAreaInput;
 		data: ArtistsByAreaResponseData;
 		liveQuery: true;
-		requiresAuthentication: false;
+		requiresAuthentication: true;
 	};
 	CapitalByCountry: {
 		input: CapitalByCountryInput;
 		data: CapitalByCountryResponseData;
 		liveQuery: true;
-		requiresAuthentication: false;
+		requiresAuthentication: true;
 	};
 	Dragons: {
 		input?: undefined;
 		data: DragonsResponseData;
 		liveQuery: true;
-		requiresAuthentication: false;
+		requiresAuthentication: true;
 	};
 	"artists/get": {
 		input: ArtistsGetInput;
 		data: ArtistsGetResponseData;
 		liveQuery: true;
-		requiresAuthentication: false;
+		requiresAuthentication: true;
 	};
 	"artists/test": {
 		input: ArtistsTestInput;
 		data: ArtistsTestResponseData;
 		liveQuery: true;
-		requiresAuthentication: false;
+		requiresAuthentication: true;
 	};
 	"users/get": {
 		input: UsersGetInput;
 		data: UsersGetResponseData;
 		liveQuery: true;
-		requiresAuthentication: false;
+		requiresAuthentication: true;
 	};
 };
 
-export interface Operations
-	extends OperationsDefinition<Queries, Mutations, Subscriptions, UserRole, {}, keyof typeof AuthProviderId> {}
+export interface Operations extends OperationsDefinition<Queries, Mutations, Subscriptions, UserRole, {}> {}

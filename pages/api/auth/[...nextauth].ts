@@ -9,5 +9,8 @@ export const authOptions: NextAuthOptions = {
     }),
     // ...add more providers here
   ],
+  session: {
+    strategy: "jwt"
+  }
 }
 export default NextAuth(authOptions)
