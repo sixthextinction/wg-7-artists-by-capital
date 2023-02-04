@@ -49,3 +49,4 @@ migrations
 /playwright/.cache/
 .wundergraph/operations/Test.graphql
 .wundergraph/operations/artists/test.ts
+.env
