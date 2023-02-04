@@ -11,13 +11,20 @@ export default createOperation.query({
       },
     });
 
-    const areaInput =
-      ctx.input.country === "US"
-        ? "Washington"
-        : capitalResult.data?.countries_country.capital.replace(
-            /[^\w\s]/gi,
-            ""
-          );
+    let areaInput;
+
+    if (
+      capitalResult &&
+      capitalResult.data &&
+      capitalResult.data.countries_country &&
+      capitalResult.data.countries_country.capital
+    ) {
+      areaInput = capitalResult.data.countries_country.capital
+        .normalize("NFD") // decompose the string into its individual Unicode code points
+        .replace(/[\u0300-\u036f]/g, "") // Remove combining diacritical marks
+        .replace(/[^\w\s]/gi, "") // Remove punctuation marks (e.g. "Washington, D.C.")
+        .replace(/\s+/g, "+"); // Replace whitespaces for string encoding.
+    }
 
     const artistsResult = await ctx.internalClient.queries.ArtistsByArea({
       input: {
@@ -25,16 +32,24 @@ export default createOperation.query({
       },
     });
 
-    // reject results which dont have at least a bio
+    // Optionally, reject results which dont have details we need
     const filteredArtists =
       artistsResult.data?.graphbrainz_search?.artists?.edges?.filter(
-        (object) =>
-          object.node.discogs &&
-          //   object.node.discogs.images &&
-          object.node.discogs.profile
+        (object) => {
+          if (object && object.node) {
+            return (
+              // object
+              object.node.discogs && object.node.discogs.profile
+              // && object.node.discogs.images &&
+            );
+          }
+        }
       );
 
-    return capitalResult && filteredArtists
+    return capitalResult &&
+      capitalResult.data &&
+      capitalResult.data.countries_country &&
+      filteredArtists
       ? {
           success: true,
           country: capitalResult.data?.countries_country.name,

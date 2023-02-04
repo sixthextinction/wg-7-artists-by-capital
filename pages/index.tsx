@@ -45,7 +45,7 @@ const Home: NextPage = () => {
                     <p className="py-2 mb-2 text-xl text-white">
                       Showing artists from{" "}
                       <strong className="text-teal-500 tracking-tight">
-                        {data.capital}
+                        {data.capital.replace(/\+/g, ' ')}
                       </strong>
                       , {data.country}
                     </p>
@@ -58,9 +58,9 @@ const Home: NextPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {data?.artists?.map((artist) => (
                   <ArtistCard
-                    name={artist.node?.name}
-                    imageUrl={artist.node?.discogs?.images[0]?.url}
-                    profile={artist.node?.discogs?.profile}
+                    name={artist.node?.name || ""}
+                    imageUrl={artist.node?.discogs?.images[0]?.url || ""}
+                    profile={artist.node?.discogs?.profile || ""}
                   />
                 ))}
               </div>
