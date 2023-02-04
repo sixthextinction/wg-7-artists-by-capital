@@ -1,4 +1,4 @@
-import { Loading } from '../components/Loading';
+import { Loading } from "../components/Loading";
 import { NextPage } from "next";
 import React, { useState } from "react";
 import ArtistCard from "../components/ArtistCard";
@@ -13,6 +13,7 @@ const Home: NextPage = () => {
     input: {
       country: query,
     },
+    enabled: true,
   });
 
   // event handlers
@@ -33,13 +34,13 @@ const Home: NextPage = () => {
           />
 
           {isLoading ? (
-            <Loading     />
+            <Loading />
           ) : data?.success ? (
             <>
               <div className="flex items-center justify-center w-full">
                 {data?.capital ? (
                   <>
-                    <p className="py-2 text-xl text-white">
+                    <p className="py-2 mb-2 text-xl text-white">
                       Showing artists from{" "}
                       <strong className="text-teal-500 tracking-tight">
                         {data.capital}
@@ -64,8 +65,8 @@ const Home: NextPage = () => {
             </>
           ) : (
             <>
-              <div className="flex justify-content items-center">
-                <p className="text-xl text-white">
+              <div className="flex justify-content items-center mt-[40%]">
+                <p className="mx-auto text-xl text-white">
                   {`No results found for input`}{" "}
                   <strong className="text-teal-500 tracking-tight">{`${query}`}</strong>
                 </p>
