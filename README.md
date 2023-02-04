@@ -11,7 +11,7 @@
 npm install && npm start
 ```
 # Screenshot
-![Screenshot](https://github.com/sixthextinction/wg-7-artists-by-capital/blob/main/wg-7-2.gif)
+![Screenshot](https://github.com/sixthextinction/wg-7-artists-by-capital/blob/main/wg-7-2-hq.gif)
 
 # Tech Stack
 - NextJS 12
