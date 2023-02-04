@@ -24,6 +24,9 @@ import type {
 	ArtistsGetResponse,
 	ArtistsGetInput,
 	ArtistsGetResponseData,
+	ArtistsTestResponse,
+	ArtistsTestInput,
+	ArtistsTestResponseData,
 	UsersGetResponse,
 	UsersGetInput,
 	UsersGetResponseData,
@@ -50,7 +53,7 @@ export interface AuthProvider {
 }
 
 export const defaultClientConfig: ClientConfig = {
-	applicationHash: "1b7cfc6c",
+	applicationHash: "86f1caab",
 	baseURL: "http://localhost:9991",
 	sdkVersion: "0.133.1",
 };
@@ -66,6 +69,9 @@ export const operationMetadata: OperationMetadata = {
 		requiresAuthentication: false,
 	},
 	"artists/get": {
+		requiresAuthentication: false,
+	},
+	"artists/test": {
 		requiresAuthentication: false,
 	},
 	"users/get": {
@@ -148,6 +154,12 @@ export type Queries = {
 		requiresAuthentication: false;
 		liveQuery: boolean;
 	};
+	"artists/test": {
+		input: ArtistsTestInput;
+		data: ArtistsTestResponseData;
+		requiresAuthentication: false;
+		liveQuery: boolean;
+	};
 	"users/get": {
 		input: UsersGetInput;
 		data: UsersGetResponseData;
@@ -194,6 +206,12 @@ export type LiveQueries = {
 	"artists/get": {
 		input: ArtistsGetInput;
 		data: ArtistsGetResponseData;
+		liveQuery: true;
+		requiresAuthentication: false;
+	};
+	"artists/test": {
+		input: ArtistsTestInput;
+		data: ArtistsTestResponseData;
 		liveQuery: true;
 		requiresAuthentication: false;
 	};

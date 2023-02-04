@@ -44,10 +44,25 @@ const Home: NextPage = () => {
           </form>
           {isLoading ? (
             <div className="flex justify-content items-center">
-              <p className="font-xl text-white"> Loading...</p>
+              <p className="text-xl text-white"> Loading...</p>
             </div>
           ) : (
             <>
+              <div className="flex items-center justify-center w-full">
+                {data?.capital ? (
+                  <>
+                    <p className="py-2 text-xl text-white">
+                      Showing artists from{" "}
+                      <strong className="text-teal-500 tracking-tight">
+                        {data.capital}
+                      </strong>, {data.country}
+                    </p>
+                  </>
+                ) : (
+                  <></>
+                )}
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {data?.artists?.map((artist) => (
                   <div

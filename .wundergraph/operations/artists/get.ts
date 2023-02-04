@@ -11,7 +11,7 @@ export default createOperation.query({
       },
     });
 
-    const areaInput = capitalResult.data?.countries_country.capital;
+    const areaInput = capitalResult.data?.countries_country.capital || "London";
 
     const artistsResult = await ctx.internalClient.queries.ArtistsByArea({
       input: {
@@ -29,7 +29,8 @@ export default createOperation.query({
       );
 
     return {
-      country: ctx.input.country,
+      country: capitalResult.data?.countries_country.name,
+      capital: areaInput,
       artists: filteredArtists.slice(0, 6), // for our example, just get the first 6
     };
   },
