@@ -33,6 +33,8 @@ const Home: NextPage = () => {
             setSearchInput={setSearchInput}
           />
 
+          {/* <Loading /> */}
+
           {isLoading ? (
             <Loading />
           ) : data?.success ? (
@@ -73,6 +75,7 @@ const Home: NextPage = () => {
               </div>
             </>
           )}
+          
         </div>
       </div>
       {/* <pre className="text-white">{JSON.stringify(data, null, 2)}</pre> */}
