@@ -7,11 +7,17 @@ export default createOperation.query({
   handler: async (ctx) => {
     const capitalResult = await ctx.internalClient.queries.CapitalByCountry({
       input: {
-        countryCode: ctx.input.country,
+        countryCode: ctx.input.country.toUpperCase(),
       },
     });
 
-    const areaInput = capitalResult.data?.countries_country.capital || "London";
+    const areaInput =
+      ctx.input.country === "US"
+        ? "Washington"
+        : capitalResult.data?.countries_country.capital.replace(
+            /[^\w\s]/gi,
+            ""
+          );
 
     const artistsResult = await ctx.internalClient.queries.ArtistsByArea({
       input: {
@@ -24,14 +30,17 @@ export default createOperation.query({
       artistsResult.data?.graphbrainz_search?.artists?.edges?.filter(
         (object) =>
           object.node.discogs &&
-        //   object.node.discogs.images &&
+          //   object.node.discogs.images &&
           object.node.discogs.profile
       );
 
-    return {
-      country: capitalResult.data?.countries_country.name,
-      capital: areaInput,
-      artists: filteredArtists.slice(0, 6), // for our example, just get the first 6
-    };
+    return capitalResult && filteredArtists
+      ? {
+          success: true,
+          country: capitalResult.data?.countries_country.name,
+          capital: areaInput,
+          artists: filteredArtists.slice(0, 6), // for our example, just get the first 6
+        }
+      : { success: false };
   },
 });

@@ -46,7 +46,7 @@ const Home: NextPage = () => {
             <div className="flex justify-content items-center">
               <p className="text-xl text-white"> Loading...</p>
             </div>
-          ) : (
+          ) : data?.success ? (
             <>
               <div className="flex items-center justify-center w-full">
                 {data?.capital ? (
@@ -55,7 +55,8 @@ const Home: NextPage = () => {
                       Showing artists from{" "}
                       <strong className="text-teal-500 tracking-tight">
                         {data.capital}
-                      </strong>, {data.country}
+                      </strong>
+                      , {data.country}
                     </p>
                   </>
                 ) : (
@@ -86,6 +87,15 @@ const Home: NextPage = () => {
                     </p>
                   </div>
                 ))}
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="flex justify-content items-center">
+                <p className="text-xl text-white">
+                  {`No results found for input`}{" "}
+                  <strong className="text-teal-500 tracking-tight">{`${query}`}</strong>
+                </p>
               </div>
             </>
           )}
