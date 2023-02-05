@@ -44,11 +44,11 @@ export default function Home() {
 
             {/* {isLoading? <Loading /> : <pre className="text-white">{JSON.stringify(data.data.artists,null, 2)}</pre> } */}
 
-            {error? <p> Error! </p>: <></>}
+            {error? <p className="text-white"> Error! {JSON.stringify(error)} </p>: <></>}
 
             {isLoading ? (
               <Loading />
-            ) : data.data?.success ? (
+            ) : data?.data?.success ? (
               <>
                 <div className="flex items-center justify-center w-full">
                   {data.data?.capital ? (
