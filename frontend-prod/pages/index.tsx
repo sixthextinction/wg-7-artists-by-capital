@@ -1,21 +1,28 @@
-import Head from 'next/head';
+import Head from "next/head";
 
 import React, { useState } from "react";
 
 import ArtistCard from "../components/ArtistCard";
 import CountryInputForm from "../components/CountryInputForm";
-import Loading from "../components/Loading"
+import Loading from "../components/Loading";
 import Navbar from "../components/Navbar";
 
 import { useSession, signIn } from "next-auth/react";
 
-import useSWR from 'swr'
+import useSWR from "swr";
 
 export default function Home() {
   const { data: session } = useSession();
   const [query, setQuery] = useState<string>("GB");
   const [searchInput, setSearchInput] = useState<string>("GB");
-  const { data, isLoading } = useSWR("https://wg-7-artists-by-capital.wundergraph.dev/operations/artists/get?country="+query)
+
+  const fetcher = (url) => fetch(url).then((r) => r.json());
+  const { data, error, isLoading } = useSWR(
+    "https://wg-7-artists-by-capital.wundergraph.dev/operations/artists/get?country="+query,
+    fetcher
+  );
+
+  // const parsedData = JSON.parse(data);
 
   // event handlers
   const handleSubmit = (event: React.FormEvent) => {
@@ -35,21 +42,23 @@ export default function Home() {
               setSearchInput={setSearchInput}
             />
 
-            {/* <Loading /> */}
+            {/* {isLoading? <Loading /> : <pre className="text-white">{JSON.stringify(data.data.artists,null, 2)}</pre> } */}
+
+            {error? <p> Error! </p>: <></>}
 
             {isLoading ? (
               <Loading />
-            ) : data?.success ? (
+            ) : data.data?.success ? (
               <>
                 <div className="flex items-center justify-center w-full">
-                  {data?.capital ? (
+                  {data.data?.capital ? (
                     <>
                       <p className="py-2 mb-2 text-xl text-white">
                         Showing artists from{" "}
                         <strong className="text-teal-500 tracking-tight">
-                          {data.capital.replace(/\+/g, " ")}
+                          {data.data?.capital.replace(/\+/g, " ")}
                         </strong>
-                        , {data.country}
+                        , {data.data?.country}
                       </p>
                     </>
                   ) : (
@@ -58,7 +67,7 @@ export default function Home() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {data?.artists?.map((artist) => (
+                  {data.data?.artists?.map((artist) => (
                     <ArtistCard
                       key={artist.node?.name}
                       name={artist.node?.name || ""}
