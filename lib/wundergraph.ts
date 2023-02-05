@@ -8,7 +8,7 @@ const {
   useSubscription,
   useFileUpload,
 } = createWunderGraphNext({
-  baseURL: 'http://localhost:3000/api/wg',
+  baseURL: 'https://wg-7-artists-by-capital.wundergraph.dev/api/wg',
   ssr: true,
 })
 
