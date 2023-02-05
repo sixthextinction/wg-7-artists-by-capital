@@ -1,25 +1,21 @@
-import  Loading  from "../components/Loading";
-import { NextPage } from "next";
+import Head from 'next/head';
+
 import React, { useState } from "react";
+
 import ArtistCard from "../components/ArtistCard";
 import CountryInputForm from "../components/CountryInputForm";
-// import { useQuery, withWunderGraph } from "../components/generated/nextjs";
-import { useQuery, withWunderGraph } from "../lib/wundergraph";
-
-import { useSession, signIn } from "next-auth/react";
+import Loading from "../components/Loading"
 import Navbar from "../components/Navbar";
 
-const Home: NextPage = () => {
+import { useSession, signIn } from "next-auth/react";
+
+import useSWR from 'swr'
+
+export default function Home() {
   const { data: session } = useSession();
   const [query, setQuery] = useState<string>("GB");
   const [searchInput, setSearchInput] = useState<string>("GB");
-  const { data, isLoading } = useQuery({
-    operationName: "artists/get",
-    input: {
-      country: query,
-    },
-    enabled: !!session, // only run the query once we are logged in
-  });
+  const { data, isLoading } = useSWR("https://wg-7-artists-by-capital.wundergraph.dev/operations/artists/get?country="+query)
 
   // event handlers
   const handleSubmit = (event: React.FormEvent) => {
@@ -64,6 +60,7 @@ const Home: NextPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {data?.artists?.map((artist) => (
                     <ArtistCard
+                      key={artist.node?.name}
                       name={artist.node?.name || ""}
                       imageUrl={artist.node?.discogs?.images[0]?.url || ""}
                       profile={artist.node?.discogs?.profile || ""}
@@ -105,6 +102,4 @@ const Home: NextPage = () => {
       </div>
     );
   }
-};
-
-export default withWunderGraph(Home);
+}
