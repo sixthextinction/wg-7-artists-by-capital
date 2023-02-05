@@ -14,16 +14,15 @@ export default createOperation.query({
     let areaInput;
 
     if (
-      capitalResult &&
       capitalResult.data &&
       capitalResult.data.countries_country &&
       capitalResult.data.countries_country.capital
     ) {
       areaInput = capitalResult.data.countries_country.capital
-        .normalize("NFD") // decompose the string into its individual Unicode code points
-        .replace(/[\u0300-\u036f]/g, "") // Remove combining diacritical marks
-        .replace(/[^\w\s]/gi, "") // Remove punctuation marks (e.g. "Washington, D.C.")
-        .replace(/\s+/g, "+"); // Replace whitespaces for string encoding.
+        .normalize("NFD")                 // decompose the string into its individual Unicode code points
+        .replace(/[\u0300-\u036f]/g, "")  // Remove combining diacritical marks
+        .replace(/[^\w\s]/gi, "")         // Remove punctuation marks (e.g. "Washington, D.C.")
+        .replace(/\s+/g, "+");            // Replace whitespaces for string encoding.
     }
 
     const artistsResult = await ctx.internalClient.queries.ArtistsByArea({
@@ -40,14 +39,13 @@ export default createOperation.query({
             return (
               // object
               object.node.discogs && object.node.discogs.profile
-              // && object.node.discogs.images &&
+              // && object.node.discogs.images
             );
           }
         }
       );
 
-    return capitalResult &&
-      capitalResult.data &&
+    return capitalResult.data &&
       capitalResult.data.countries_country &&
       filteredArtists
       ? {
