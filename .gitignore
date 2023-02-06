@@ -3,6 +3,9 @@
 .vscode
 .idea
 
+# prod deployment
+frontend-prod
+
 # jest compilation
 test/*.js
 
