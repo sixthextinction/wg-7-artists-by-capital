@@ -4,7 +4,8 @@
 .idea
 
 # prod deployment
-frontend-prod
+dev
+prod
 
 # jest compilation
 test/*.js
