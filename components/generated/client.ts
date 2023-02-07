@@ -19,23 +19,9 @@ import type {
 	CapitalByCountryResponse,
 	CapitalByCountryInput,
 	CapitalByCountryResponseData,
-	DragonsResponse,
-	DragonsResponseData,
 	ArtistsGetResponse,
 	ArtistsGetInput,
 	ArtistsGetResponseData,
-	ArtistsTestResponse,
-	ArtistsTestInput,
-	ArtistsTestResponseData,
-	UsersGetResponse,
-	UsersGetInput,
-	UsersGetResponseData,
-	UsersSubscribeResponse,
-	UsersSubscribeInput,
-	UsersSubscribeResponseData,
-	UsersUpdateResponse,
-	UsersUpdateInput,
-	UsersUpdateResponseData,
 } from "./models";
 
 export type UserRole = "admin" | "user";
@@ -44,7 +30,7 @@ export const WUNDERGRAPH_S3_ENABLED = false;
 export const WUNDERGRAPH_AUTH_ENABLED = false;
 
 export const defaultClientConfig: ClientConfig = {
-	applicationHash: "7ddf129a",
+	applicationHash: "0eae7ec9",
 	baseURL: "http://localhost:9991",
 	sdkVersion: "0.133.1",
 };
@@ -56,22 +42,7 @@ export const operationMetadata: OperationMetadata = {
 	CapitalByCountry: {
 		requiresAuthentication: false,
 	},
-	Dragons: {
-		requiresAuthentication: false,
-	},
 	"artists/get": {
-		requiresAuthentication: false,
-	},
-	"artists/test": {
-		requiresAuthentication: false,
-	},
-	"users/get": {
-		requiresAuthentication: false,
-	},
-	"users/subscribe": {
-		requiresAuthentication: false,
-	},
-	"users/update": {
 		requiresAuthentication: false,
 	},
 };
@@ -133,47 +104,17 @@ export type Queries = {
 		requiresAuthentication: false;
 		liveQuery: boolean;
 	};
-	Dragons: {
-		input?: undefined;
-		data: DragonsResponseData;
-		requiresAuthentication: false;
-		liveQuery: boolean;
-	};
 	"artists/get": {
 		input: ArtistsGetInput;
 		data: ArtistsGetResponseData;
 		requiresAuthentication: false;
 		liveQuery: boolean;
 	};
-	"artists/test": {
-		input: ArtistsTestInput;
-		data: ArtistsTestResponseData;
-		requiresAuthentication: false;
-		liveQuery: boolean;
-	};
-	"users/get": {
-		input: UsersGetInput;
-		data: UsersGetResponseData;
-		requiresAuthentication: false;
-		liveQuery: boolean;
-	};
 };
 
-export type Mutations = {
-	"users/update": {
-		input: UsersUpdateInput;
-		data: UsersUpdateResponseData;
-		requiresAuthentication: false;
-	};
-};
+export type Mutations = {};
 
-export type Subscriptions = {
-	"users/subscribe": {
-		input: UsersSubscribeInput;
-		data: UsersSubscribeResponseData;
-		requiresAuthentication: false;
-	};
-};
+export type Subscriptions = {};
 
 export type LiveQueries = {
 	ArtistsByArea: {
@@ -188,27 +129,9 @@ export type LiveQueries = {
 		liveQuery: true;
 		requiresAuthentication: false;
 	};
-	Dragons: {
-		input?: undefined;
-		data: DragonsResponseData;
-		liveQuery: true;
-		requiresAuthentication: false;
-	};
 	"artists/get": {
 		input: ArtistsGetInput;
 		data: ArtistsGetResponseData;
-		liveQuery: true;
-		requiresAuthentication: false;
-	};
-	"artists/test": {
-		input: ArtistsTestInput;
-		data: ArtistsTestResponseData;
-		liveQuery: true;
-		requiresAuthentication: false;
-	};
-	"users/get": {
-		input: UsersGetInput;
-		data: UsersGetResponseData;
 		liveQuery: true;
 		requiresAuthentication: false;
 	};
