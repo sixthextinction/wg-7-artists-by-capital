@@ -44,35 +44,35 @@ export const WUNDERGRAPH_S3_ENABLED = false;
 export const WUNDERGRAPH_AUTH_ENABLED = false;
 
 export const defaultClientConfig: ClientConfig = {
-	applicationHash: "a0068bfc",
+	applicationHash: "7ddf129a",
 	baseURL: "http://localhost:9991",
 	sdkVersion: "0.133.1",
 };
 
 export const operationMetadata: OperationMetadata = {
 	ArtistsByArea: {
-		requiresAuthentication: true,
+		requiresAuthentication: false,
 	},
 	CapitalByCountry: {
-		requiresAuthentication: true,
+		requiresAuthentication: false,
 	},
 	Dragons: {
-		requiresAuthentication: true,
+		requiresAuthentication: false,
 	},
 	"artists/get": {
-		requiresAuthentication: true,
+		requiresAuthentication: false,
 	},
 	"artists/test": {
-		requiresAuthentication: true,
+		requiresAuthentication: false,
 	},
 	"users/get": {
-		requiresAuthentication: true,
+		requiresAuthentication: false,
 	},
 	"users/subscribe": {
-		requiresAuthentication: true,
+		requiresAuthentication: false,
 	},
 	"users/update": {
-		requiresAuthentication: true,
+		requiresAuthentication: false,
 	},
 };
 
@@ -124,37 +124,37 @@ export type Queries = {
 	ArtistsByArea: {
 		input: ArtistsByAreaInput;
 		data: ArtistsByAreaResponseData;
-		requiresAuthentication: true;
+		requiresAuthentication: false;
 		liveQuery: boolean;
 	};
 	CapitalByCountry: {
 		input: CapitalByCountryInput;
 		data: CapitalByCountryResponseData;
-		requiresAuthentication: true;
+		requiresAuthentication: false;
 		liveQuery: boolean;
 	};
 	Dragons: {
 		input?: undefined;
 		data: DragonsResponseData;
-		requiresAuthentication: true;
+		requiresAuthentication: false;
 		liveQuery: boolean;
 	};
 	"artists/get": {
 		input: ArtistsGetInput;
 		data: ArtistsGetResponseData;
-		requiresAuthentication: true;
+		requiresAuthentication: false;
 		liveQuery: boolean;
 	};
 	"artists/test": {
 		input: ArtistsTestInput;
 		data: ArtistsTestResponseData;
-		requiresAuthentication: true;
+		requiresAuthentication: false;
 		liveQuery: boolean;
 	};
 	"users/get": {
 		input: UsersGetInput;
 		data: UsersGetResponseData;
-		requiresAuthentication: true;
+		requiresAuthentication: false;
 		liveQuery: boolean;
 	};
 };
@@ -163,7 +163,7 @@ export type Mutations = {
 	"users/update": {
 		input: UsersUpdateInput;
 		data: UsersUpdateResponseData;
-		requiresAuthentication: true;
+		requiresAuthentication: false;
 	};
 };
 
@@ -171,7 +171,7 @@ export type Subscriptions = {
 	"users/subscribe": {
 		input: UsersSubscribeInput;
 		data: UsersSubscribeResponseData;
-		requiresAuthentication: true;
+		requiresAuthentication: false;
 	};
 };
 
@@ -180,37 +180,37 @@ export type LiveQueries = {
 		input: ArtistsByAreaInput;
 		data: ArtistsByAreaResponseData;
 		liveQuery: true;
-		requiresAuthentication: true;
+		requiresAuthentication: false;
 	};
 	CapitalByCountry: {
 		input: CapitalByCountryInput;
 		data: CapitalByCountryResponseData;
 		liveQuery: true;
-		requiresAuthentication: true;
+		requiresAuthentication: false;
 	};
 	Dragons: {
 		input?: undefined;
 		data: DragonsResponseData;
 		liveQuery: true;
-		requiresAuthentication: true;
+		requiresAuthentication: false;
 	};
 	"artists/get": {
 		input: ArtistsGetInput;
 		data: ArtistsGetResponseData;
 		liveQuery: true;
-		requiresAuthentication: true;
+		requiresAuthentication: false;
 	};
 	"artists/test": {
 		input: ArtistsTestInput;
 		data: ArtistsTestResponseData;
 		liveQuery: true;
-		requiresAuthentication: true;
+		requiresAuthentication: false;
 	};
 	"users/get": {
 		input: UsersGetInput;
 		data: UsersGetResponseData;
 		liveQuery: true;
-		requiresAuthentication: true;
+		requiresAuthentication: false;
 	};
 };
 
