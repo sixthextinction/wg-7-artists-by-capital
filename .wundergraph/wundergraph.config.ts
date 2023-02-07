@@ -42,7 +42,7 @@ configureWunderGraphApplication({
     ...cors.allowAll,
     allowedOrigins:
       process.env.NODE_ENV === "production"
-        ? ["http://localhost:3000"]
+        ? ["https://wg-7-artists-by-capital-frontend.vercel.app"]
         : ["http://localhost:3000"],
   },
   authentication: {
