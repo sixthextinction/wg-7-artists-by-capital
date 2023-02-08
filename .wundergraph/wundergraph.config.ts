@@ -41,8 +41,9 @@ configureWunderGraphApplication({
   cors: {
     ...cors.allowAll,
     allowedOrigins: [
-      "http://localhost:3000",
-      "https://wg-7-artists-by-capital-frontend.vercel.app",
+      "http://localhost:3000",                                                            // dev
+      "https://wg-7-artists-by-capital-frontend.vercel.app",                              // production
+      "https://wg-7-artists-by-capital-frontend-git-nextauth-sixthextinction.vercel.app/" // preview
     ],
   },
   authentication: {
