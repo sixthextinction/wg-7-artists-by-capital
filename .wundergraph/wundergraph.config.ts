@@ -40,16 +40,16 @@ configureWunderGraphApplication({
   ],
   cors: {
     ...cors.allowAll,
-    allowedOrigins:
-      process.env.NODE_ENV === "production"
-        ? ["https://wg-7-artists-by-capital-frontend.vercel.app"]
-        : ["http://localhost:3000"],
+    allowedOrigins: [
+      "http://localhost:3000",
+      "https://wg-7-artists-by-capital-frontend.vercel.app",
+    ],
   },
   authentication: {
     tokenBased: {
       providers: [
         {
-          userInfoEndpoint: 'http://localhost:3000/api/auth/session',
+          userInfoEndpoint: "http://localhost:3000/api/auth/session",
         },
       ],
     },
