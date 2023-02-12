@@ -9,11 +9,11 @@ const Navbar: React.FC = () => {
         {session && (
           <>
             <h1 className="text-md text-white mr-2">
-              <a href={`https://github.com/${session.user.name}`}> <span className="text-teal-500">{session.user.name}</span> </a>
+              <a href={`https://github.com/${session.user?.name}`}> <span className="text-teal-500">{session.user?.name}</span> </a>
             </h1>
             <div
               className="w-7 h-7 rounded-full bg-cover bg-center "
-              style={{ backgroundImage: `url(${session.user.image})` }}
+              style={{ backgroundImage: `url(${session.user?.image})` }}
             ></div>
           </>
         )}
