@@ -3,8 +3,8 @@ import { NextPage } from "next";
 import React, { useState } from "react";
 import ArtistCard from "../components/ArtistCard";
 import CountryInputForm from "../components/CountryInputForm";
-// import { useQuery, withWunderGraph } from "../components/generated/nextjs";
-import { useQuery, withWunderGraph } from "../lib/wundergraph";
+import { useQuery, withWunderGraph } from "../components/generated/nextjs";
+// import { useQuery, withWunderGraph } from "../lib/wundergraph";
 
 import { useSession, signIn } from "next-auth/react";
 import Navbar from "../components/Navbar";
