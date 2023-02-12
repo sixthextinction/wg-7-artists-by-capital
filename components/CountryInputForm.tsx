@@ -9,7 +9,10 @@ type Props = {
 const CountryInputForm = (props: Props) => {
   return (
     <>
-      <form onSubmit={props.handleSubmit} className="w-full ml-3 max-w-4xl px-4 ">
+      <form
+        onSubmit={props.handleSubmit}
+        className="w-full ml-3 max-w-4xl px-4 "
+      >
         <div className="flex border-b border-teal-500 py-2">
           <input
             type="text"
