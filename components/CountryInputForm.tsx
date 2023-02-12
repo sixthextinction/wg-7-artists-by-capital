@@ -3,7 +3,7 @@ import React from "react";
 type Props = {
   handleSubmit: (event: React.FormEvent) => void;
   searchInput: string;
-  setSearchInput: (string) => void;
+  setSearchInput: (searchInput: string) => void;
 };
 
 const CountryInputForm = (props: Props) => {
