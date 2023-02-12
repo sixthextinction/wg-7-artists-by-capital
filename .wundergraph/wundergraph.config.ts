@@ -51,7 +51,8 @@ configureWunderGraphApplication({
     tokenBased: {
       providers: [
         {
-          userInfoEndpoint: "http://localhost:3000/api/auth/session",
+          // userInfoEndpoint: "http://localhost:3000/api/auth/session",
+          userInfoEndpoint: "https://wg-7-artists-by-capital-v2.vercel.app/api/auth/session",
         },
       ],
     },
