@@ -3,11 +3,12 @@ import { NextPage } from "next";
 import React, { useState } from "react";
 import ArtistCard from "../components/ArtistCard";
 import CountryInputForm from "../components/CountryInputForm";
-// import { useQuery, withWunderGraph } from "../components/generated/nextjs";
-import { useQuery, withWunderGraph } from "../lib/wundergraph";
+import { useQuery, withWunderGraph } from "../components/generated/nextjs";
+// import { useQuery, withWunderGraph } from "../lib/wundergraph";
 
 import { useSession, signIn } from "next-auth/react";
 import Navbar from "../components/Navbar";
+import { Artist } from "../types/Artist";
 
 const Home: NextPage = () => {
   const { data: session } = useSession();
@@ -28,7 +29,7 @@ const Home: NextPage = () => {
     
     setQuery(searchInput);
   };
-  if (session) {
+  if (true) {
     return (
       <div>
         <Navbar />
@@ -63,7 +64,7 @@ const Home: NextPage = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {data?.artists?.map((artist) => (
+                  {data?.artists?.map((artist: Artist) => (
                     <ArtistCard
                       name={artist.node?.name || ""}
                       imageUrl={artist.node?.discogs?.images[0]?.url || ""}

@@ -1,13 +1,19 @@
 import { createOperation, z } from "../../generated/wundergraph.factory";
 
+// my types
+import { Artist } from "../../../types/Artist";
+
 export default createOperation.query({
+  // Step 1 : Define input shape with zod
   input: z.object({
     country: z.string(),
   }),
-  handler: async (ctx) => {
-    const capitalResult = await ctx.internalClient.queries.CapitalByCountry({
+  handler: async ({ input, operations }) => {
+    // Step 2 : API call #1 to get capital by ISO-3166 code
+    const capitalResult = await operations.query({
+      operationName: "CapitalByCountry",
       input: {
-        countryCode: ctx.input.country.toUpperCase(),
+        countryCode: input.country.toUpperCase(),
       },
     });
 
@@ -19,22 +25,24 @@ export default createOperation.query({
       capitalResult.data.countries_country.capital
     ) {
       areaInput = capitalResult.data.countries_country.capital
-        .normalize("NFD")                 // decompose the string into its individual Unicode code points
-        .replace(/[\u0300-\u036f]/g, "")  // Remove combining diacritical marks
-        .replace(/[^\w\s]/gi, "")         // Remove punctuation marks (e.g. "Washington, D.C.")
-        .replace(/\s+/g, "+");            // Replace whitespaces for string encoding.
+        .normalize("NFD") // decompose the string into its individual Unicode code points
+        .replace(/[\u0300-\u036f]/g, "") // Remove combining diacritical marks
+        .replace(/[^\w\s]/gi, "") // Remove punctuation marks (e.g. "Washington, D.C.")
+        .replace(/\s+/g, "+"); // Replace whitespaces for string encoding.
     }
 
-    const artistsResult = await ctx.internalClient.queries.ArtistsByArea({
+    // Step 3 : API call #2 to get artists from that capital city
+    const artistsResult = await operations.query({
+      operationName: "ArtistsByArea",
       input: {
         query: `area:${areaInput}`,
       },
     });
 
-    // Optionally, reject results which dont have details we need
+    // Step 3B (Optional) : Filter out results which dont have the details we want.
     const filteredArtists =
       artistsResult.data?.graphbrainz_search?.artists?.edges?.filter(
-        (object) => {
+        (object: Artist) => {
           if (object && object.node) {
             return (
               // object
@@ -45,6 +53,7 @@ export default createOperation.query({
         }
       );
 
+    // Step 4 : Return custom data!
     return capitalResult.data &&
       capitalResult.data.countries_country &&
       filteredArtists

@@ -19,7 +19,8 @@ const ArtistCard = ({ name, imageUrl, profile }: Props) => {
         {name}
       </h2>
 
-      <p className="text-gray-700 mt-2">{profile?.substring(0, 80) + "..."}</p>
+      {/* <p className="text-gray-700 mt-2">{profile?.substring(0, 80) + "..."}</p> */}
+      <p className="text-gray-700 mt-2 line-clamp-3">{profile}</p>
     </div>
   );
 };
