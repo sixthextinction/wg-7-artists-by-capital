@@ -14,6 +14,6 @@ npm install && npm start
 ![Screenshot](https://github.com/sixthextinction/wg-7-artists-by-capital/blob/main/wg-7-2-hq.gif)
 
 # Tech Stack
-- NextJS 12
+- NextJS
 - WunderGraph
 - TailwindCSS
