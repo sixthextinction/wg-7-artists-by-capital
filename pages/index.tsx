@@ -29,7 +29,7 @@ const Home: NextPage = () => {
     
     setQuery(searchInput);
   };
-  if (true) {
+  if (session) {
     return (
       <div>
         <Navbar />
