@@ -26,7 +26,6 @@ const Home: NextPage = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     // essentially "submit" a query
-    
     setQuery(searchInput);
   };
   if (session) {
