@@ -16,7 +16,7 @@ export function middleware(request: NextRequest) {
   // rewrite the api url to the WunderGraph API
   const url = new URL(
     pathname + request.nextUrl.search,
-    "http://127.0.0.1:9991"
+    "https://wg-7-artists-by-capital.wundergraph.dev"
   )
 
   // add the token to the Authorization header
