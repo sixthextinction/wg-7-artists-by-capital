@@ -10,10 +10,6 @@ import { NextJsTemplate } from "@wundergraph/nextjs/dist/template";
 import server from "./wundergraph.server";
 import operations from "./wundergraph.operations";
 
-const spaceX = introspect.graphql({
-  apiNamespace: "spacex",
-  url: "https://spacex-api.fly.dev/graphql/",
-});
 const countries = introspect.graphql({
   apiNamespace: "countries",
   url: "https://countries.trevorblades.com/",
@@ -26,7 +22,7 @@ const graphbrainz = introspect.graphql({
 
 // configureWunderGraph emits the configuration
 configureWunderGraphApplication({
-  apis: [spaceX, countries, graphbrainz],
+  apis: [countries, graphbrainz],
   server,
   operations,
   codeGenerators: [
@@ -40,19 +36,13 @@ configureWunderGraphApplication({
   ],
   cors: {
     ...cors.allowAll,
-    allowedOrigins: [
-      "http://localhost:3000",                                                            // dev
-      "https://wg-7-artists-by-capital-frontend.vercel.app",                              // production
-      "https://wg-7-artists-by-capital-frontend-git-nextauth-sixthextinction.vercel.app/", // preview
-      "https://wg-7-artists-by-capital-v2.vercel.app/"
-    ],
+    allowedOrigins: [process.env.NEXT_URL as string],
   },
   authentication: {
     tokenBased: {
       providers: [
         {
-          // userInfoEndpoint: "http://localhost:3000/api/auth/session",
-          userInfoEndpoint: "https://wg-7-artists-by-capital-v2.vercel.app/api/auth/session",
+          userInfoEndpoint: `${process.env.NEXT_URL}/api/auth/sesssion`,
         },
       ],
     },
