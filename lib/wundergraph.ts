@@ -8,7 +8,7 @@ const {
   useSubscription,
   useFileUpload,
 } = createWunderGraphNext({
-  baseURL: `/api/wg`,
+  baseURL: `https://wg-7-artists-by-capital-v2.vercel.app/api/wg`,
   ssr: true,
 })
 

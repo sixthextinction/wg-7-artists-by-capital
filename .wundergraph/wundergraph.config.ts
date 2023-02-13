@@ -42,7 +42,7 @@ configureWunderGraphApplication({
     tokenBased: {
       providers: [
         {
-          userInfoEndpoint: `http://localhost:3000/api/auth/sesssion`,
+          userInfoEndpoint: `https://wg-7-artists-by-capital.wundergraph.dev/api/auth/sesssion`,
         },
       ],
     },
