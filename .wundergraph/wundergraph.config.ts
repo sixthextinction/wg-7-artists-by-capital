@@ -42,7 +42,7 @@ configureWunderGraphApplication({
     tokenBased: {
       providers: [
         {
-          userInfoEndpoint: `https://wg-7-artists-by-capital.wundergraph.dev/api/auth/sesssion`,
+          userInfoEndpoint: `https://wg-7-artists-by-capital-v2.vercel.app/api/auth/sesssion`,
         },
       ],
     },
