@@ -30,20 +30,20 @@ export const WUNDERGRAPH_S3_ENABLED = false;
 export const WUNDERGRAPH_AUTH_ENABLED = false;
 
 export const defaultClientConfig: ClientConfig = {
-	applicationHash: "2297bc37",
+	applicationHash: "37746825",
 	baseURL: "http://localhost:9991",
 	sdkVersion: "0.134.0",
 };
 
 export const operationMetadata: OperationMetadata = {
 	ArtistsByArea: {
-		requiresAuthentication: true,
+		requiresAuthentication: false,
 	},
 	CapitalByCountry: {
-		requiresAuthentication: true,
+		requiresAuthentication: false,
 	},
 	"artists/get": {
-		requiresAuthentication: true,
+		requiresAuthentication: false,
 	},
 };
 
@@ -95,19 +95,19 @@ export type Queries = {
 	ArtistsByArea: {
 		input: ArtistsByAreaInput;
 		data: ArtistsByAreaResponseData;
-		requiresAuthentication: true;
+		requiresAuthentication: false;
 		liveQuery: boolean;
 	};
 	CapitalByCountry: {
 		input: CapitalByCountryInput;
 		data: CapitalByCountryResponseData;
-		requiresAuthentication: true;
+		requiresAuthentication: false;
 		liveQuery: boolean;
 	};
 	"artists/get": {
 		input: ArtistsGetInput;
 		data: ArtistsGetResponseData;
-		requiresAuthentication: true;
+		requiresAuthentication: false;
 		liveQuery: boolean;
 	};
 };
@@ -121,19 +121,19 @@ export type LiveQueries = {
 		input: ArtistsByAreaInput;
 		data: ArtistsByAreaResponseData;
 		liveQuery: true;
-		requiresAuthentication: true;
+		requiresAuthentication: false;
 	};
 	CapitalByCountry: {
 		input: CapitalByCountryInput;
 		data: CapitalByCountryResponseData;
 		liveQuery: true;
-		requiresAuthentication: true;
+		requiresAuthentication: false;
 	};
 	"artists/get": {
 		input: ArtistsGetInput;
 		data: ArtistsGetResponseData;
 		liveQuery: true;
-		requiresAuthentication: true;
+		requiresAuthentication: false;
 	};
 };
 

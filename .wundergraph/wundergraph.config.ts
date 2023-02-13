@@ -36,13 +36,13 @@ configureWunderGraphApplication({
   ],
   cors: {
     ...cors.allowAll,
-    allowedOrigins: [process.env.NEXT_URL as string],
+    allowedOrigins: ["http://localhost:3000"],
   },
   authentication: {
     tokenBased: {
       providers: [
         {
-          userInfoEndpoint: `${process.env.NEXT_URL}/api/auth/sesssion`,
+          userInfoEndpoint: `http://localhost:3000/api/auth/sesssion`,
         },
       ],
     },
